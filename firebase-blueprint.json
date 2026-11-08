@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Student profile holding basic credentials, display name, and avatar",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Auth UID of the student" },
+        "displayName": { "type": "string", "description": "Student full name" },
+        "email": { "type": "string", "description": "Student email address" },
+        "photoURL": { "type": "string", "description": "Avatar photo URL" },
+        "createdAt": { "type": "string", "description": "Account creation timestamp" },
+        "updatedAt": { "type": "string", "description": "Last updated timestamp" }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "Student academic homework or project with deadline and completion state",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "course": { "type": "string" },
+        "title": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "urgency": { "type": "string", "enum": ["high", "medium", "low"] },
+        "estimatedMins": { "type": "number" },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "course", "title", "completed"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "Lecture notes, document summaries, or captured study sheets",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "subject": { "type": "string" },
+        "date": { "type": "string" },
+        "preview": { "type": "string" },
+        "tags": { "type": "array" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "aiExplanation": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "subject", "content"]
+    },
+    "ScheduleEvent": {
+      "title": "Schedule Event",
+      "description": "Student timetable event or class session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "course": { "type": "string" },
+        "room": { "type": "string" },
+        "timeStart": { "type": "string" },
+        "timeEnd": { "type": "string" },
+        "type": { "type": "string" },
+        "attendanceStatus": { "type": "string", "enum": ["critical", "warning", "good"] }
+      },
+      "required": ["id", "userId", "title", "course", "room", "timeStart", "timeEnd"]
+    },
+    "AttendanceRecord": {
+      "title": "Attendance Record",
+      "description": "Course attendance metrics",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "course": { "type": "string" },
+        "code": { "type": "string" },
+        "attended": { "type": "number" },
+        "total": { "type": "number" },
+        "target": { "type": "number" }
+      },
+      "required": ["id", "userId", "course", "attended", "total", "target"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Private student profile data"
+    },
+    "/users/{userId}/assignments/{assignmentId}": {
+      "schema": "Assignment",
+      "description": "Student homework tasks and assignments"
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Student lecture notes and study documents"
+    },
+    "/users/{userId}/schedule/{scheduleId}": {
+      "schema": "ScheduleEvent",
+      "description": "Student timetable events"
+    },
+    "/users/{userId}/attendance/{attendanceId}": {
+      "schema": "AttendanceRecord",
+      "description": "Student course attendance tracker"
+    }
+  }
+}

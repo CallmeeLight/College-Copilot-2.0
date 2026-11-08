@@ -1,0 +1,6 @@
+{
+  "name": "College Copilot",
+  "description": "A premium student productivity companion with a minimal futuristic liquid-glass interface and AI-powered academic planning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

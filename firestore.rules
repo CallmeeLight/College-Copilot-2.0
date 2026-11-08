@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net: default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Connectivity verification document
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // User profile matching
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create, update: if isOwner(userId) && isValidId(userId);
+      allow delete: if isOwner(userId);
+
+      // Student Assignments
+      match /assignments/{assignmentId} {
+        allow get: if isOwner(userId) && isValidId(assignmentId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(assignmentId) && incoming().userId == userId;
+        allow update: if isOwner(userId) && isValidId(assignmentId) && incoming().userId == userId;
+        allow delete: if isOwner(userId) && isValidId(assignmentId);
+      }
+
+      // Student Notes
+      match /notes/{noteId} {
+        allow get: if isOwner(userId) && isValidId(noteId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(noteId) && incoming().userId == userId;
+        allow update: if isOwner(userId) && isValidId(noteId) && incoming().userId == userId;
+        allow delete: if isOwner(userId) && isValidId(noteId);
+      }
+
+      // Student Schedule Timetable
+      match /schedule/{scheduleId} {
+        allow get: if isOwner(userId) && isValidId(scheduleId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(scheduleId) && incoming().userId == userId;
+        allow update: if isOwner(userId) && isValidId(scheduleId) && incoming().userId == userId;
+        allow delete: if isOwner(userId) && isValidId(scheduleId);
+      }
+
+      // Course Attendance Records
+      match /attendance/{attendanceId} {
+        allow get: if isOwner(userId) && isValidId(attendanceId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(attendanceId) && incoming().userId == userId;
+        allow update: if isOwner(userId) && isValidId(attendanceId) && incoming().userId == userId;
+        allow delete: if isOwner(userId) && isValidId(attendanceId);
+      }
+    }
+  }
+}

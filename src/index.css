@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: rgba(226, 232, 240, 0.8);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F2F4F7;
+    color: #1e293b;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* 60Hz GPU Layer Promotion & Hardware Acceleration Utilities */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Immersive stationary top navigation liquid-glass refraction */
+.nav-glass-refraction {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(248, 250, 255, 0.52) 100%);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 
+    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 1px 0 rgba(203, 213, 225, 0.45),
+    0 12px 36px -6px rgba(15, 23, 42, 0.08),
+    0 3px 10px -2px rgba(99, 102, 241, 0.04);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Immersive UI liquid glass styling (Optimized for 60Hz frame pacing) */
+.glass-tile {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: layout style;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.glass-tile:hover {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.09), 0 2px 10px rgba(99, 102, 241, 0.05);
+  border-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+/* Primary CTA Solid Gradient Tile (Non-glass, high contrast & hierarchy) */
+.cta-gradient-tile {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 45%, #312e81 100%);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  box-shadow: 0 10px 28px -4px rgba(67, 56, 202, 0.35), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: layout style;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-gradient-tile:hover {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 16px 36px -2px rgba(67, 56, 202, 0.45), 0 6px 16px -2px rgba(0, 0, 0, 0.12);
+}
+
+/* Standardized Icon Badges across all tiles */
+.tile-icon-badge {
+  width: 2rem; /* 32px standard size */
+  height: 2rem;
+  border-radius: 0.75rem; /* 12px standard rounded-xl */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Tightened Meta Label Typography */
+.tile-meta-label {
+  font-size: 0.625rem; /* 10px */
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-variant: all-small-caps;
+  line-height: 1.2;
+}
+
+.glass-lens {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 20px -2px rgba(15, 23, 42, 0.04),
+    0 10px 25px -5px rgba(15, 23, 42, 0.02);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.glass-lens-elevated {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 20px 35px -5px rgba(15, 23, 42, 0.06),
+    0 8px 16px -4px rgba(15, 23, 42, 0.03);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.glass-lens-subtle {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+/* Sliding Glass Indicator - Pristine frosted glass pane with refractive edge and light sheen */
+.sliding-glass-pill {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.65) 100%);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 1.5px 0 rgba(203, 213, 225, 0.4),
+    0 4px 16px -2px rgba(15, 23, 42, 0.08),
+    0 2px 6px -1px rgba(99, 102, 241, 0.05);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Subtle fluid ambient light effect (60fps GPU compositor optimized) */
+@keyframes ambientDrift {
+  0% { transform: translate3d(0px, 0px, 0) scale(1); }
+  33% { transform: translate3d(24px, -30px, 0) scale(1.04); }
+  66% { transform: translate3d(-20px, 15px, 0) scale(0.97); }
+  100% { transform: translate3d(0px, 0px, 0) scale(1); }
+}
+
+@keyframes ambientDriftSlow {
+  0% { transform: translate3d(0px, 0px, 0) rotate(0deg); }
+  50% { transform: translate3d(-30px, 20px, 0) rotate(180deg); }
+  100% { transform: translate3d(0px, 0px, 0) rotate(360deg); }
+}
+
+.animate-ambient-1 {
+  animation: ambientDrift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animate-ambient-2 {
+  animation: ambientDriftSlow 38s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-1,
+  .animate-ambient-2 {
+    animation: none;
+  }
+}
+
+/* Content visibility optimization for smooth 60hz list rendering */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 100px;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}
+
+/* Futuristic Radiating Glowing Ring Pulse for Copilot Button (60Hz GPU Composited) */
+@keyframes copilotRingRadiate {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+    opacity: 0.95;
+    box-shadow: 0 0 10px 1px rgba(129, 140, 248, 0.8), inset 0 0 8px rgba(192, 132, 252, 0.6);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 18px 3px rgba(147, 51, 234, 0.65), inset 0 0 12px rgba(99, 102, 241, 0.45);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(2.3);
+    opacity: 0;
+    box-shadow: 0 0 28px 5px rgba(99, 102, 241, 0), inset 0 0 16px rgba(168, 85, 247, 0);
+  }
+}
+
+.animate-copilot-ring-1 {
+  animation: copilotRingRadiate 1.8s cubic-bezier(0.2, 0.8, 0.35, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-copilot-ring-2 {
+  animation: copilotRingRadiate 1.8s cubic-bezier(0.2, 0.8, 0.35, 1) 0.6s infinite;
+  will-change: transform, opacity;
+}
+
+.animate-copilot-ring-3 {
+  animation: copilotRingRadiate 1.8s cubic-bezier(0.2, 0.8, 0.35, 1) 1.2s infinite;
+  will-change: transform, opacity;
+}
+
